@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "zookeeper.h": "c",
+        "*.tcc": "c",
+        "inet.h": "c",
+        "client_stub-private.h": "c"
+    }
+}

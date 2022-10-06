@@ -1,0 +1,51 @@
+syntax = "proto3"; 
+message message_t 
+ { 
+        enum Opcode { 
+                OP_BAD     = 0; 
+                OP_SIZE    = 10; 
+                OP_DEL     = 20; 
+                OP_GET     = 30; 
+                OP_PUT     = 40; 
+                OP_GETKEYS = 50; 
+                OP_PRINT   = 60;
+                OP_STATS   = 70; 
+                OP_ERROR   = 99; 
+        } 
+        Opcode opcode = 1; 
+ 
+        enum C_type { 
+                CT_BAD    = 0; 
+                CT_KEY    = 10; 
+                CT_VALUE  = 20; 
+                CT_ENTRY  = 30; 
+                CT_KEYS   = 40; 
+                CT_RESULT = 50; 
+                CT_TABLE  = 60; 
+                CT_NONE   = 70;
+        } 
+        C_type c_type = 2; 
+        sint32 data_size = 3; 
+        string data = 4; 
+
+        message Entry{
+                string key = 1;
+                bytes data = 2;
+        }
+        repeated Entry entries = 5;
+     
+        message Statistics{
+                uint32 total_counter = 3;
+                uint32 counter_put = 4;
+                uint32 counter_get = 5;
+                uint32 counter_del = 6;
+                uint32 counter_size = 7;
+                uint32 counter_getKeys = 8;
+                uint32 counter_table_print = 9;
+                uint32 timer_sec = 11; 
+                uint32 timer_usec = 12;
+        }
+        Statistics stats = 6;
+
+        uint32 size_entries = 7;
+    }; 
